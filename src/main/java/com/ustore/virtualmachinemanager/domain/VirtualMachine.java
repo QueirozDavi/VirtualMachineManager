@@ -2,21 +2,29 @@ package com.ustore.virtualmachinemanager.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Document
+@Table(name = "VIRTUAL_MACHINE")
 public class VirtualMachine {
 
     @Id
-    private String id;
+    private Long id;
 
+    @ManyToOne()
+    @JoinColumn(name = "ID_DISK")
     private Disk disk;
-    private Memory memory;
-    private Cpu cpu;
 
+    @ManyToOne()
+    @JoinColumn(name = "ID_MEMORY")
+    private Memory memory;
+
+    @Transient
+    private List<CpuInfo> cpuInfos;
 }
+
 
 
