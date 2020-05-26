@@ -2,14 +2,13 @@ package com.ustore.virtualmachinemanager.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
+@Entity
 @Table(name = "MOTHER_MACHINE")
 public class MotherMachine {
 
@@ -18,11 +17,13 @@ public class MotherMachine {
     private Long id;
 
     @NotNull
-    @Column(name = "DISK", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "ID_DISK")
     private Disk disk;
 
     @NotNull
-    @Column(name = "MEMORY", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "ID_MEMORY")
     private Memory memory;
 
 }

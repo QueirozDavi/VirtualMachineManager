@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name = "VIRTUAL_MACHINE")
+@Entity
 public class VirtualMachine {
 
     @Id
