@@ -3,7 +3,6 @@ package com.ustore.virtualmachinemanager.service;
 import com.ustore.virtualmachinemanager.domain.Disk;
 import com.ustore.virtualmachinemanager.domain.Memory;
 import com.ustore.virtualmachinemanager.domain.MotherMachine;
-import com.ustore.virtualmachinemanager.domain.dto.HardwareInfoDTO;
 import com.ustore.virtualmachinemanager.exception.BadRequestException;
 import com.ustore.virtualmachinemanager.exception.NotFoundException;
 import com.ustore.virtualmachinemanager.repository.DiskRepository;
@@ -34,7 +33,7 @@ public class MotherMachineService {
         this.memoryRepository = memoryRepository;
     }
 
-    public MotherMachine getMotherMachine() throws NotFoundException {
+    public MotherMachine getMotherMachine() {
 
         if (repository.findAll().isEmpty())
             throw new NotFoundException("Mother Machine not found.");
@@ -42,7 +41,7 @@ public class MotherMachineService {
         return repository.findAll().get(0);
     }
 
-    public MotherMachine createMotherMachine() throws BadRequestException {
+    public MotherMachine createMotherMachine() {
 
         if (!repository.findAll().isEmpty())
             throw new BadRequestException("There is already a machine created, use it or delete it to create another " +

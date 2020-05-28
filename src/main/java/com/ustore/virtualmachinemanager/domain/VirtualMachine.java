@@ -13,6 +13,7 @@ import java.util.List;
 public class VirtualMachine {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne()
@@ -25,6 +26,10 @@ public class VirtualMachine {
 
     @Transient
     private List<CpuInfo> cpuInfos;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATUS")
+    private StatusEnum status;
 }
 
 

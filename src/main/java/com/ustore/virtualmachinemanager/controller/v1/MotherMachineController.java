@@ -1,7 +1,6 @@
 package com.ustore.virtualmachinemanager.controller.v1;
 
 import com.ustore.virtualmachinemanager.domain.MotherMachine;
-import com.ustore.virtualmachinemanager.domain.dto.HardwareInfoDTO;
 import com.ustore.virtualmachinemanager.service.MotherMachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
