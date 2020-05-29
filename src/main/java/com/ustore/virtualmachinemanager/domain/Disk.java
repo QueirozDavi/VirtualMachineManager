@@ -19,11 +19,11 @@ public class Disk {
 
     @NotNull
     @Column(name = "TOTAL_DISK_SPACE", nullable = false)
-    private long totalDiskSpace;
+    private double totalDiskSpace;
 
     @NotNull
     @Column(name = "FREE_SPACE", nullable = false)
-    private long freeSpace;
+    private double freeSpace;
 
     @NotNull
     @Column(name = "USABLE_SPACE", nullable = false)

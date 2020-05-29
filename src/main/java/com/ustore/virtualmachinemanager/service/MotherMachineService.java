@@ -3,6 +3,7 @@ package com.ustore.virtualmachinemanager.service;
 import com.ustore.virtualmachinemanager.domain.Disk;
 import com.ustore.virtualmachinemanager.domain.Memory;
 import com.ustore.virtualmachinemanager.domain.MotherMachine;
+import com.ustore.virtualmachinemanager.domain.dto.VirtualMachineRequestDTO;
 import com.ustore.virtualmachinemanager.exception.BadRequestException;
 import com.ustore.virtualmachinemanager.exception.NotFoundException;
 import com.ustore.virtualmachinemanager.repository.DiskRepository;
@@ -60,5 +61,21 @@ public class MotherMachineService {
         motherMachine.setMemory(memoryRepository.save(memory));
         motherMachine.setDisk(diskRepository.save(disk));
         return repository.save(motherMachine);
+    }
+
+    void updateMotherMachineReferences(VirtualMachineRequestDTO virtualMachineRequestDTO,
+                                       MotherMachine motherMachine) {
+
+        motherMachine.getDisk().setUsableSpace(motherMachine.getDisk().getUsableSpace()
+                - virtualMachineRequestDTO.getAllocatedDisk());
+
+        motherMachine.getMemory().setTotalOpMemory(motherMachine.getMemory().getTotalOpMemory()
+                - virtualMachineRequestDTO.getAllocatedMemory());
+
+        motherMachine.getDisk().setFreeSpace(motherMachine.getDisk().getFreeSpace()
+                - virtualMachineRequestDTO.getAllocatedDisk());
+
+        diskRepository.save(motherMachine.getDisk());
+        memoryRepository.save(motherMachine.getMemory());
     }
 }

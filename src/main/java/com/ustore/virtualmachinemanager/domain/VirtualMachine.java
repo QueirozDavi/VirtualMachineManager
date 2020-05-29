@@ -30,6 +30,10 @@ public class VirtualMachine {
     @Enumerated(EnumType.STRING)
     @Column(name = "STATUS")
     private StatusEnum status;
+
+    @ManyToOne()
+    @JoinColumn(name = "ID_MOTHER_MACHINE")
+    private MotherMachine motherMachine;
 }
 
 

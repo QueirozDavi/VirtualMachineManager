@@ -20,10 +20,28 @@ public class VirtualMachineController {
         this.virtualMachineService = virtualMachineService;
     }
 
-
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createMotherMachine(@Valid @RequestBody VirtualMachineRequestDTO virtualMachineRequestDTO){
+    @ResponseStatus(HttpStatus.OK)
+    public void createMotherMachine(@Valid @RequestBody VirtualMachineRequestDTO virtualMachineRequestDTO) {
         virtualMachineService.createVirtualMachine(virtualMachineRequestDTO);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public VirtualMachine updateVirutalMachine(@PathVariable Long id,
+                                               @Valid @RequestBody VirtualMachineRequestDTO virtualMachineRequestDTO) {
+
+        return virtualMachineService.updateVirtualMachine(id, virtualMachineRequestDTO);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteVirtualMachine(@PathVariable Long id) {
+        virtualMachineService.deleteVirtualMachine(id);
+    }
+
+    @GetMapping("/{id}")
+    public VirtualMachine getVirtualMachineResources(@PathVariable Long id) {
+        return virtualMachineService.getVirtualMachineResources(id);
     }
 }
